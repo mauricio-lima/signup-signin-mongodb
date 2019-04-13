@@ -39,6 +39,15 @@ const initialize = async () => {
             }
         });
 
+        server.route({
+            method  : 'POST',
+            path    : '/signin',
+            handler : (request, response) => {
+                const payload = request.payload;
+                return JSON.stringify({ message : 'Hello' });
+            }
+        });
+
         await server.start();
         console.log('Server running on %ss', server.info.uri);
     
