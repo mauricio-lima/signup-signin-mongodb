@@ -10,13 +10,46 @@ const initialize = async () => {
         method: 'GET',
         path:'/',
         handler: (request, h) => {
-
-            return 'Hello World!';
+            return 'Home Page';
         }
     });
 
-    await server.start();
-    console.log('Server running on %ss', server.info.uri);
+    try
+    {
+        await server.register(require('inert'))
+//*
+        server.route({
+            method  : 'GET',
+            path    : '/signin',
+            handler : {
+                file  : {
+                   path : 'signin.html'
+                }
+            }
+
+        });
+
+        server.route({
+            method  : 'GET',
+            path    : '/signup',
+            handler : {
+                file  : {
+                   path : 'signup.html'
+                }
+            }
+        });
+
+        await server.start();
+        console.log('Server running on %ss', server.info.uri);
+    
+//*/
+    }
+    catch (error)
+    {
+        console.log('error :', error)
+    }
+
+
 };
 
 initialize();
