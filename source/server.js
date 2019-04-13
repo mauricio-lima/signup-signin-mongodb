@@ -20,21 +20,32 @@ const initialize = async () => {
 //*
         server.route({
             method  : 'GET',
-            path    : '/signin',
+            path    : '/signin/{path*}',
             handler : {
-                file  : {
-                   path : 'signin.html'
+                file  : (request) => {
+                    let path = request.params.path; 
+                    if (!path) {
+                        path = 'signin.html'
+                    }
+                    path = 'views/' + path;
+
+                    return path;
                 }
             }
-
         });
 
         server.route({
             method  : 'GET',
-            path    : '/signup',
+            path    : '/signup/{path*}',
             handler : {
-                file  : {
-                   path : 'signup.html'
+                file  : (request) => {
+                    let path = request.params.path; 
+                    if (!path) {
+                        path = 'signup.html'
+                    }
+                    path = 'views/' + path;
+
+                    return path;
                 }
             }
         });
@@ -45,6 +56,15 @@ const initialize = async () => {
             handler : (request, response) => {
                 const payload = request.payload;
                 return JSON.stringify({ message : 'Hello' });
+            }
+        });
+
+        server.route({
+            method  : 'POST',
+            path    : '/signup',
+            handler : (request, response) => {
+                const payload = request.payload;
+                return JSON.stringify({ message : 'Hello from Sign Up' });
             }
         });
 
