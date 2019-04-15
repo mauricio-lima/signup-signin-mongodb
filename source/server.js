@@ -2,8 +2,8 @@ const Hapi = require('hapi');
 
 const initialize = async () => {
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
+        port :  8080,
+        //host : 'usermanager'
     });
 
     server.route({
@@ -17,7 +17,7 @@ const initialize = async () => {
     try
     {
         await server.register(require('inert'))
-//*
+
         server.route({
             method  : 'GET',
             path    : '/signin/{path*}',
@@ -69,9 +69,7 @@ const initialize = async () => {
         });
 
         await server.start();
-        console.log('Server running on %ss', server.info.uri);
-    
-//*/
+        console.log('Server running on %s', server.info.uri);
     }
     catch (error)
     {
