@@ -4,8 +4,8 @@
             try
             {
                 const result = await axios.post('/signin', { 
-                    user     : document.getElementById('user'), 
-                    password : document.getElementById('password') 
+                    user     : document.getElementById('user'),value,
+                    password : document.getElementById('password').value
                 })
                 console.log(result);
             }
