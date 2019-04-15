@@ -6,17 +6,19 @@ const initialize = async () => {
         //host : 'usermanager'
     });
 
-    server.route({
-        method: 'GET',
-        path:'/',
-        handler: (request, h) => {
-            return 'Home Page';
-        }
-    });
-
     try
     {
         await server.register(require('inert'))
+
+        server.route({
+            method  : 'GET',
+            path    : '/',
+            handler : {
+                file  : (request) => {
+                    return 'views/home.html';
+                }
+            }
+        });
 
         server.route({
             method  : 'GET',
