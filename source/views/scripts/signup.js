@@ -20,12 +20,16 @@
             button.disabled = true;
             verifyConsistency();
             const result = await axios.post({ 
-                username : document.getElementById('username').value,
+                username : document.getElementById('user').value,
                 password : document.getElementById('password').value
             })
         }
         catch (error)
         {
+            if ( (error.response) && (error.response.status) ) {
+                alert('http ' + error.response.status);
+                return;
+            }
             alert(error.message)
         }
         finally
